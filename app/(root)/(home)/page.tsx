@@ -1,11 +1,6 @@
-// import QuestionCard from "@/components/cards/QuestionCard";
-// import Pagination from "@/components/shared/Pagination";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
-// import {
-//   getQuestions,
-//   getRecommendedQuestions,
-// } from "@/lib/actions/question.action";
+
 import { SearchParamsProps } from "@/types";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -14,88 +9,90 @@ import Filter from "@/components/shared/Filter";
 import HomeFilters from "@/components/home/HomeFIlters";
 import NoResult from "@/components/shared/NoResult";
 import QuestionCard from "@/components/cards/QuestionCard";
-
-// import { auth } from "@clerk/nextjs/server";
-// import { auth } from "@clerk/nextjs";
+import {
+  getRecommendedQuestions,
+  getQuestions,
+} from "@/lib/actions/question.action";
+import { auth } from "@clerk/nextjs/server";
 
 export const metadata: Metadata = {
   title: "Pocetna | Programersko Pitanje",
 };
 
 export default async function Home({ searchParams }: SearchParamsProps) {
-  // const { userId } = auth();
-  // let result;
+  const { userId } = auth();
+  let result;
 
-  // if (searchParams?.filter === "recommended") {
-  //   if (userId) {
-  //     result = await getRecommendedQuestions({
-  //       userId,
-  //       searchQuery: searchParams.q,
-  //       page: searchParams.page ? +searchParams.page : 1,
-  //     });
-  //   } else {
-  //     result = {
-  //       questions: [],
-  //       isNext: false,
-  //     };
-  //   }
-  // } else {
-  //   result = await getQuestions({
-  //     searchQuery: searchParams.q,
-  //     filter: searchParams.filter,
-  //     page: searchParams.page ? +searchParams.page : 1,
-  //   });
-  // }
+  if (searchParams?.filter === "recommended") {
+    if (userId) {
+      result = await getRecommendedQuestions({
+        userId,
+        searchQuery: searchParams.q,
+        page: searchParams.page ? +searchParams.page : 1,
+      });
+    } else {
+      result = {
+        questions: [],
+        isNext: false,
+      };
+    }
+  } else {
+    result = await getQuestions({
+      searchQuery: searchParams.q,
+      filter: searchParams.filter,
+      page: searchParams.page ? +searchParams.page : 1,
+    });
+  }
 
-  const result = {
-    questions: [
-      {
-        title: "How to implement authentication in Node.js?",
-        content:
-          "I'm building a Node.js application and I need to implement user authentication. What are the best practices for doing this?",
-        tags: [
-          /* Array of ObjectIds referencing tags */
-        ],
-        views: 25,
-        upvotes: [
-          /* Array of ObjectIds referencing users who upvoted */
-        ],
-        downvotes: [
-          /* Array of ObjectIds referencing users who downvoted */
-        ],
-        author: {
-          /* ObjectId referencing the user who authored the question */
-        },
-        answers: [
-          /* Array of ObjectIds referencing answers to this question */
-        ],
-        createdAt: new Date("2024-05-16"),
-      },
-      {
-        title: "How to deploy a React app to production?",
-        content:
-          "I've finished building my React app and now I want to deploy it to production. What are the recommended ways to do this?",
-        tags: [
-          /* Array of ObjectIds referencing tags */
-        ],
-        views: 12,
-        upvotes: [
-          /* Array of ObjectIds referencing users who upvoted */
-        ],
-        downvotes: [
-          /* Array of ObjectIds referencing users who downvoted */
-        ],
-        author: {
-          /* ObjectId referencing the user who authored the question */
-        },
-        answers: [
-          /* Array of ObjectIds referencing answers to this question */
-        ],
-        createdAt: new Date("2024-05-15"),
-      },
-      // Add more mock questions as needed
-    ],
-  };
+  // const result = {
+  //   questions: [
+  //     {
+  //       title: "How to implement authentication in Node.js?",
+  //       content:
+  //         "I'm building a Node.js application and I need to implement user authentication. What are the best practices for doing this?",
+  //       tags: [
+  //         /* Array of ObjectIds referencing tags */
+  //       ],
+  //       views: 25,
+  //       upvotes: [
+  //         /* Array of ObjectIds referencing users who upvoted */
+  //       ],
+  //       downvotes: [
+  //         /* Array of ObjectIds referencing users who downvoted */
+  //       ],
+  //       author: {
+  //         /* ObjectId referencing the user who authored the question */
+  //       },
+  //       answers: [
+  //         /* Array of ObjectIds referencing answers to this question */
+  //       ],
+  //       createdAt: new Date("2024-05-16"),
+  //     },
+  //     {
+  //       title: "How to deploy a React app to production?",
+  //       content:
+  //         "I've finished building my React app and now I want to deploy it to production. What are the recommended ways to do this?",
+  //       tags: [
+  //         /* Array of ObjectIds referencing tags */
+  //       ],
+  //       views: 12,
+  //       upvotes: [
+  //         /* Array of ObjectIds referencing users who upvoted */
+  //       ],
+  //       downvotes: [
+  //         /* Array of ObjectIds referencing users who downvoted */
+  //       ],
+  //       author: {
+  //         /* ObjectId referencing the user who authored the question */
+  //       },
+  //       answers: [
+  //         /* Array of ObjectIds referencing answers to this question */
+  //       ],
+  //       createdAt: new Date("2024-05-15"),
+  //     },
+  //     // Add more mock questions as needed
+  //   ],
+  // };
 
   return (
     <>
