@@ -18,13 +18,10 @@ import { Input } from "@/components/ui/input";
 import { QuestionsSchema } from "@/lib/validations";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
-// import { createQuestion, editQuestion } from "@/lib/actions/question.action";
-// import { useRouter, usePathname } from "next/navigation";
+import { createQuestion, editQuestion } from "@/lib/actions/question.action";
+import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeProvider";
 import { useForm } from "react-hook-form";
-import { editQuestion, createQuestion } from "@/lib/actions/question.action";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
 
 interface Props {
   type?: string;
