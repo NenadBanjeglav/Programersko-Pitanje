@@ -4,8 +4,7 @@ import RenderTag from "../shared/RenderTag";
 import Metric from "../shared/Metric";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 import { SignedIn } from "@clerk/nextjs";
-
-// import EditDeleteAction from "../shared/EditDeleteAction";
+import EditDeleteAction from "../shared/EditDeleteAction";
 
 interface Props {
   _id: string;
@@ -38,7 +37,7 @@ export default function QuestionCard({
   answers,
   createdAt,
 }: Props) {
-  //   const showActionButtons = clerkId && clerkId === author.clerkId;
+  const showActionButtons = clerkId && clerkId === author.clerkId;
 
   return (
     <div className="card-wrapper rounded-[10px] p-9 sm:px-11 ">
@@ -56,9 +55,9 @@ export default function QuestionCard({
         </div>
 
         <SignedIn>
-          {/* {showActionButtons && (
+          {showActionButtons && (
             <EditDeleteAction type="Question" itemId={JSON.stringify(_id)} />
-          )} */}
+          )}
         </SignedIn>
       </div>
 

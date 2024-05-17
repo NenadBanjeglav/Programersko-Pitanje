@@ -44,56 +44,6 @@ export default async function Home({ searchParams }: SearchParamsProps) {
     });
   }
 
-  // const result = {
-  //   questions: [
-  //     {
-  //       title: "How to implement authentication in Node.js?",
-  //       content:
-  //         "I'm building a Node.js application and I need to implement user authentication. What are the best practices for doing this?",
-  //       tags: [
-  //         /* Array of ObjectIds referencing tags */
-  //       ],
-  //       views: 25,
-  //       upvotes: [
-  //         /* Array of ObjectIds referencing users who upvoted */
-  //       ],
-  //       downvotes: [
-  //         /* Array of ObjectIds referencing users who downvoted */
-  //       ],
-  //       author: {
-  //         /* ObjectId referencing the user who authored the question */
-  //       },
-  //       answers: [
-  //         /* Array of ObjectIds referencing answers to this question */
-  //       ],
-  //       createdAt: new Date("2024-05-16"),
-  //     },
-  //     {
-  //       title: "How to deploy a React app to production?",
-  //       content:
-  //         "I've finished building my React app and now I want to deploy it to production. What are the recommended ways to do this?",
-  //       tags: [
-  //         /* Array of ObjectIds referencing tags */
-  //       ],
-  //       views: 12,
-  //       upvotes: [
-  //         /* Array of ObjectIds referencing users who upvoted */
-  //       ],
-  //       downvotes: [
-  //         /* Array of ObjectIds referencing users who downvoted */
-  //       ],
-  //       author: {
-  //         /* ObjectId referencing the user who authored the question */
-  //       },
-  //       answers: [
-  //         /* Array of ObjectIds referencing answers to this question */
-  //       ],
-  //       createdAt: new Date("2024-05-15"),
-  //     },
-  //     // Add more mock questions as needed
-  //   ],
-  // };
-
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center ">
@@ -139,10 +89,10 @@ export default async function Home({ searchParams }: SearchParamsProps) {
           ))
         ) : (
           <NoResult
-            title="There's no question to show"
-            description="Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion. our query could be the next big thing others learn from. Get involved! 💡"
+            title="Nema pitanja za prikazivanje"
+            description="Budi prvi koji će prekinuti tišinu! 🚀 Postavi pitanje i započni diskusiju. Tvoje pitanje može biti sledeća velika stvar od koje će drugi učiti. Uključi se!"
             link="/ask-question"
-            linkTitle="Ask a Question"
+            linkTitle="Postavi Pitanje"
           />
         )}
       </div>
