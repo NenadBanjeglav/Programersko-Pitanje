@@ -30,7 +30,9 @@ const NavContent = () => {
   return (
     <section className="flex h-full flex-col gap-6 pt-16">
       {updatedSideBarlinks.map((el) => {
-        const isActive = pathname.startsWith(el.route) || pathname === el.route;
+        const isActive =
+          (pathname.includes(el.route) && el.route.length > 1) ||
+          pathname === el.route;
 
         return (
           <SheetClose asChild key={el.route}>

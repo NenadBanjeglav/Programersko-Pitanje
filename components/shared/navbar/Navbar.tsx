@@ -26,6 +26,7 @@ export default function Navbar() {
         <SignedIn>
           <UserButton
             signInUrl="/"
+            afterSignOutUrl="/"
             appearance={{
               elements: {
                 avatarBox: "h-10 w-10",
