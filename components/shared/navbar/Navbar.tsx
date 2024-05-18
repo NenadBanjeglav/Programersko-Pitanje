@@ -1,3 +1,4 @@
+"use client";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,7 +26,6 @@ export default function Navbar() {
         <Theme />
         <SignedIn>
           <UserButton
-            signInUrl="/"
             afterSignOutUrl="/"
             appearance={{
               elements: {

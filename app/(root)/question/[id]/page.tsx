@@ -31,8 +31,6 @@ export default async function page({ params, searchParams }: any) {
 
   const result = await getQuestionById({ questionId: params.id });
 
-  console.log(result.content);
-
   return (
     <>
       <div className="flex-start w-full flex-col">

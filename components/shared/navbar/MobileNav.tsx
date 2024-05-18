@@ -16,8 +16,8 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 const NavContent = () => {
-  const { userId } = useAuth();
   const pathname = usePathname();
+  const { userId } = useAuth();
 
   let updatedSideBarlinks = sidebarLinks;
 
@@ -83,10 +83,10 @@ export default function MobileNav() {
             src="/assets/images/site-logo.svg"
             width={23}
             height={23}
-            alt="DevOverflow"
+            alt="Programersko Pitanje"
           />
           <p className="h2-bold  text-dark100_light900 font-spaceGrotesk ">
-            Programersko<span className="text-primary-500">Pitanje</span>
+            Prog<span className="text-primary-500">Pitanje</span>
           </p>
         </Link>
         <div>

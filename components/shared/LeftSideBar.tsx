@@ -1,7 +1,7 @@
 "use client";
 
 import { sidebarLinks } from "@/constants";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,21 +9,27 @@ import { SignedOut, useAuth } from "@clerk/nextjs";
 import { Button } from "../ui/button";
 
 export default function LeftSideBar() {
-  const { userId } = useAuth();
   const pathname = usePathname();
 
-  let updatedSideBarlinks = sidebarLinks;
+  const { userId, isSignedIn } = useAuth();
 
-  if (!userId) {
-    updatedSideBarlinks = sidebarLinks.filter(
-      (el) => el.route !== "/profile" && el.route !== "/collection"
-    );
-  }
+  const [updatedSideBarLinks, setupdatedSideBarLinks] = useState(sidebarLinks);
+
+  useEffect(() => {
+    if (!isSignedIn) {
+      const filteredLinks = sidebarLinks.filter(
+        (el) => el.route !== "/profile" && el.route !== "/collection"
+      );
+      setupdatedSideBarLinks(filteredLinks);
+    } else {
+      setupdatedSideBarLinks(sidebarLinks);
+    }
+  }, [isSignedIn]);
 
   return (
     <section className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[266px]">
       <div className="flex flex-1 flex-col gap-6">
-        {updatedSideBarlinks.map((el) => {
+        {updatedSideBarLinks.map((el) => {
           const isActive =
             (pathname.includes(el.route) && el.route.length > 1) ||
             pathname === el.route;
