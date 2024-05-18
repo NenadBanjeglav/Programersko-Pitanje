@@ -38,7 +38,9 @@ export default async function page({ searchParams }: SearchParamsProps) {
         />
       </div>
 
-      <section className="mt-12 flex flex-wrap gap-4">
+      <section
+        className={result.tags.length > 0 ? "mt-12 flex flex-wrap gap-4" : ""}
+      >
         {result.tags.length > 0 ? (
           result.tags.map((el) => (
             <Link
@@ -64,10 +66,10 @@ export default async function page({ searchParams }: SearchParamsProps) {
           ))
         ) : (
           <NoResult
-            title="No Tags Found"
-            description="Izgleda da nisu pronađene oznake."
+            title="Nema Tagova"
+            description="Izgleda da nisu pronađeni tagovi."
             link="/ask-question"
-            linkTitle="Ask a question"
+            linkTitle="Postavi Pitanje"
           />
         )}
       </section>
