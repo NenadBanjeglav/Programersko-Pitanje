@@ -57,6 +57,7 @@ export default function Profile({ clerkId, user }: Props) {
         },
         path: pathname,
       });
+
       router.back();
     } catch (error) {
       console.log(error);
@@ -77,11 +78,11 @@ export default function Profile({ clerkId, user }: Props) {
           render={({ field }) => (
             <FormItem className="space-y-3.5">
               <FormLabel className="paragraph-semibold text-dark400_light800">
-                Name <span className="text-primary-500">*</span>
+                Ime <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Your name"
+                  placeholder="Tvoje ime"
                   className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px]"
                   {...field}
                 />
@@ -97,11 +98,11 @@ export default function Profile({ clerkId, user }: Props) {
           render={({ field }) => (
             <FormItem className="space-y-3.5">
               <FormLabel className="paragraph-semibold text-dark400_light800">
-                Username <span className="text-primary-500">*</span>
+                Korisnicko Ime <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Your username"
+                  placeholder="Tvoje korisnicko ime"
                   className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px]"
                   {...field}
                 />
@@ -122,7 +123,7 @@ export default function Profile({ clerkId, user }: Props) {
               <FormControl>
                 <Input
                   type="url"
-                  placeholder="Your porfolio url"
+                  placeholder="URL tvog portfolija"
                   className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px]"
                   {...field}
                 />
@@ -138,11 +139,11 @@ export default function Profile({ clerkId, user }: Props) {
           render={({ field }) => (
             <FormItem className="space-y-3.5">
               <FormLabel className="paragraph-semibold text-dark400_light800">
-                Location
+                Lokacija
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Where are you from?"
+                  placeholder="Odakle si?"
                   className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px]"
                   {...field}
                 />
@@ -158,11 +159,11 @@ export default function Profile({ clerkId, user }: Props) {
           render={({ field }) => (
             <FormItem className="space-y-3.5">
               <FormLabel className="paragraph-semibold text-dark400_light800">
-                Bio
+                Biografija
               </FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="What's special about you?"
+                  placeholder="Ukratko o sebi?"
                   className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px]"
                   {...field}
                 />

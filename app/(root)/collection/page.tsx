@@ -1,34 +1,47 @@
 import QuestionCard from "@/components/cards/QuestionCard";
+import Filter from "@/components/shared/Filter";
 import NoResult from "@/components/shared/NoResult";
-import LocalSearchBar from "@/components/shared/search/LocalSearchBar";
-import { getQuestionsByTagId } from "@/lib/actions/tag.action";
-import { URLProps } from "@/types";
-import React from "react";
-import type { Metadata } from "next";
 import Pagination from "@/components/shared/Pagination";
+import LocalSearchBar from "@/components/shared/search/LocalSearchBar";
+
+import { QuestionFilters } from "@/constants/filters";
+import { getSavedQuestions } from "@/lib/actions/user.action";
+import { SearchParamsProps } from "@/types";
+import { auth } from "@clerk/nextjs/server";
+
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tag detaljnije | Programersko Pitanje",
+  title: "Kolekcija | Programersko Pitanje",
 };
 
-export default async function Page({ params, searchParams }: URLProps) {
-  const result = await getQuestionsByTagId({
-    tagId: params.id,
+export default async function Collections({ searchParams }: SearchParamsProps) {
+  const { userId } = auth();
+
+  if (!userId) return null;
+
+  const result = await getSavedQuestions({
+    clerkId: userId,
     searchQuery: searchParams.q,
+    filter: searchParams.filter,
     page: searchParams.page ? +searchParams.page : 1,
   });
 
   return (
     <>
-      <h1 className="h1-bold text-dark100_light900">{result.tagTitle}</h1>
+      <h1 className="h1-bold text-dark100_light900">Sacuvana Pitanja</h1>
 
-      <div className="mt-11  w-full ">
+      <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
         <LocalSearchBar
-          route={`/tags/${params.id}`}
+          route="/collection"
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
           placeholder="Search for questions"
           otherClasses="flex-1"
+        />
+        <Filter
+          filters={QuestionFilters}
+          otherClasses="min-h-[56px] sm:min-w-[170px]"
         />
       </div>
 
@@ -49,7 +62,7 @@ export default async function Page({ params, searchParams }: URLProps) {
           ))
         ) : (
           <NoResult
-            title="Nema pitanja pod ovim tagom"
+            title="Nema sacuvanih pitanja"
             description="Budi prvi koji će prekinuti tišinu! 🚀"
             link="/ask-question"
             linkTitle="Postavi Pitanje"

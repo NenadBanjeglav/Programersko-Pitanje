@@ -1,11 +1,11 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-// import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import Image from "next/image";
-// import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-// import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface CustomInputProps {
   route: string;
@@ -22,38 +22,38 @@ export default function LocalSearchBar({
   placeholder,
   otherClasses,
 }: CustomInputProps) {
-  //   const router = useRouter();
-  //   const pathname = usePathname();
-  //   const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  //   const query = searchParams.get("q");
+  const query = searchParams.get("q");
 
-  //   const [search, setSearch] = useState(query || "");
+  const [search, setSearch] = useState(query || "");
 
-  //   useEffect(() => {
-  //     const delayDebouncFn = setTimeout(() => {
-  //       if (search) {
-  //         const newUrl = formUrlQuery({
-  //           params: searchParams.toString(),
-  //           key: "q",
-  //           value: search,
-  //         });
+  useEffect(() => {
+    const delayDebouncFn = setTimeout(() => {
+      if (search) {
+        const newUrl = formUrlQuery({
+          params: searchParams.toString(),
+          key: "q",
+          value: search,
+        });
 
-  //         router.push(newUrl, { scroll: false });
-  //       } else {
-  //         if (pathname === route) {
-  //           const newUrl = removeKeysFromQuery({
-  //             params: searchParams.toString(),
-  //             keysToRemove: ["q"],
-  //           });
+        router.push(newUrl, { scroll: false });
+      } else {
+        if (pathname === route) {
+          const newUrl = removeKeysFromQuery({
+            params: searchParams.toString(),
+            keysToRemove: ["q"],
+          });
 
-  //           router.push(newUrl, { scroll: false });
-  //         }
-  //       }
-  //     }, 300);
+          router.push(newUrl, { scroll: false });
+        }
+      }
+    }, 300);
 
-  //     return () => clearTimeout(delayDebouncFn);
-  //   }, [search, route, pathname, router, searchParams, query]);
+    return () => clearTimeout(delayDebouncFn);
+  }, [search, route, pathname, router, searchParams, query]);
 
   return (
     <div
@@ -72,8 +72,8 @@ export default function LocalSearchBar({
       <Input
         type="text"
         placeholder={placeholder}
-        // value={search}
-        // onChange={(e) => setSearch(e.target.value)}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
         className="paragraph-regular no-focus placeholder text-dark400_light700 border-none bg-transparent shadow-none outline-none"
       />
 

@@ -7,6 +7,7 @@ import { SearchParamsProps } from "@/types";
 import Link from "next/link";
 
 import type { Metadata } from "next";
+import Pagination from "@/components/shared/Pagination";
 
 export const metadata: Metadata = {
   title: "Zajednica | Programersko Pitanje",
@@ -41,19 +42,19 @@ export default async function page({ searchParams }: SearchParamsProps) {
           result.users.map((el) => <UserCard key={el._id} user={el} />)
         ) : (
           <div className="paragraph-regular text-dark200_light800 mx-auto max-w-4xl text-center">
-            <p>No users yet</p>
+            <p>Jos uvek nema korisnika</p>
             <Link href="/sign-up" className="mt-1 font-bold text-accent-blue">
-              Join to be the first!
+              Pridruzi se i budi prvi!
             </Link>
           </div>
         )}
       </section>
-      {/* <div className="mt-10">
+      <div className="mt-10">
         <Pagination
           pageNumber={searchParams?.page ? +searchParams.page : 1}
           isNext={result.isNext}
         />
-      </div> */}
+      </div>
     </>
   );
 }

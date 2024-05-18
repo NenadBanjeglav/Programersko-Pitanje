@@ -14,6 +14,7 @@ import {
   getQuestions,
 } from "@/lib/actions/question.action";
 import { auth } from "@clerk/nextjs/server";
+import Pagination from "@/components/shared/Pagination";
 
 export const metadata: Metadata = {
   title: "Pocetna | Programersko Pitanje",
@@ -60,7 +61,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
           route="/"
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
-          placeholder="Search for questions"
+          placeholder="Pretrazi pitanja"
           otherClasses="flex-1"
         />
         <Filter
@@ -97,12 +98,12 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         )}
       </div>
 
-      {/* <div className="mt-10">
+      <div className="mt-10">
         <Pagination
           pageNumber={searchParams?.page ? +searchParams.page : 1}
           isNext={result.isNext}
         />
-      </div> */}
+      </div>
     </>
   );
 }

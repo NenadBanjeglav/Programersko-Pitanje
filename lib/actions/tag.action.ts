@@ -10,6 +10,7 @@ import {
 import Tag, { ITag } from "@/database/tag.model";
 import { FilterQuery } from "mongoose";
 import Question from "@/database/question.model";
+import Interaction from "@/database/interaction.model";
 
 export async function getAllTags(params: GetAllTagsParams) {
   try {
@@ -74,11 +75,35 @@ export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
 
     if (!user) throw new Error("User not found");
 
-    return [
-      { _id: "1", name: "tag1" },
-      { _id: "2", name: "tag2" },
-      { _id: "3", name: "tag3" },
-    ];
+    const topTags = await Interaction.aggregate([
+      { $match: { user: userId } }, // Match interactions for the specified user
+      { $unwind: "$tags" }, // Unwind the tags array
+      {
+        $group: {
+          _id: "$tags", // Group by tag ID
+          count: { $sum: 1 }, // Count the number of occurrences of each tag
+        },
+      },
+      { $sort: { count: -1 } }, // Sort by count in descending order
+      { $limit: 3 }, // Limit the number of results
+      {
+        $lookup: {
+          from: "tags", // The name of the tags collection
+          localField: "_id",
+          foreignField: "_id",
+          as: "tagInfo",
+        },
+      },
+      { $unwind: "$tagInfo" }, // Unwind the tagInfo array
+      {
+        $project: {
+          _id: "$tagInfo._id",
+          name: "$tagInfo.name",
+        },
+      },
+    ]);
+
+    return topTags;
   } catch (error) {
     console.log(error);
     throw error;

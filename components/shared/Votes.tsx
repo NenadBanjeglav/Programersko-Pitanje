@@ -45,9 +45,7 @@ export default function Votes({
     });
 
     return toast({
-      title: `Question ${
-        !hasSaved ? "Saved in" : "Removed from"
-      } your collection`,
+      title: `Pitanje ${!hasSaved ? "Sacuvano u" : "Izbrisano iz"} kolekcije`,
       variant: !hasSaved ? "default" : "destructive",
     });
   };
@@ -55,8 +53,8 @@ export default function Votes({
   const handleVote = async (action: string) => {
     if (!userId) {
       return toast({
-        title: "Please log in",
-        description: "You must be logged in to perform this action",
+        title: "Prijavite se",
+        description: "Morate biti prijavljeni",
       });
     }
 
@@ -80,7 +78,7 @@ export default function Votes({
       }
 
       return toast({
-        title: `Upvote ${!hasupVoted ? "Successful" : "Removed"}`,
+        title: `Upvote ${!hasupVoted ? "Uspesan" : "Izbrisan"}`,
         variant: !hasupVoted ? "default" : "destructive",
       });
     }
@@ -105,7 +103,7 @@ export default function Votes({
       }
 
       return toast({
-        title: `Downvote ${!hasdownVoted ? "Successful" : "Removed"}`,
+        title: `Downvote ${!hasdownVoted ? "Uspesan" : "Izbrisan"}`,
         variant: !hasdownVoted ? "default" : "destructive",
       });
     }

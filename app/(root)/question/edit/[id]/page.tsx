@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 import { auth } from "@clerk/nextjs/server";
 
 export const metadata: Metadata = {
-  title: "Edit Question | Dev Overflow",
+  title: "Izmeni Pitanje | Dev Overflow",
 };
 
 export default async function Page({ params }: ParamsProps) {
@@ -21,7 +21,7 @@ export default async function Page({ params }: ParamsProps) {
 
   return (
     <>
-      <h1 className="h1-bold text-dark100_light900">Edit Question</h1>
+      <h1 className="h1-bold text-dark100_light900">Izmeni Pitanje</h1>
 
       <div className="mt-9">
         <Question

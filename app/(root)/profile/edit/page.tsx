@@ -8,7 +8,7 @@ import { auth } from "@clerk/nextjs/server";
 import Profile from "@/components/forms/Profile";
 
 export const metadata: Metadata = {
-  title: "Edit Profile | Dev Overflow",
+  title: "Izmeni Profil | Programersko Pitanje",
 };
 
 export default async function Page({ params }: ParamsProps) {

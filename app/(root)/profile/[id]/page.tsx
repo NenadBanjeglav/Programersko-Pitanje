@@ -17,7 +17,7 @@ import ProfileLink from "@/components/shared/ProfileLink";
 import QuestionTab from "@/components/shared/QuestionTab";
 
 export const metadata: Metadata = {
-  title: "Profile | Dev Overflow",
+  title: "Profil | Programersko Pitanje",
 };
 
 export default async function Page({ params, searchParams }: URLProps) {
@@ -78,7 +78,7 @@ export default async function Page({ params, searchParams }: URLProps) {
             {clerkId === userInfo.user.clerkId && (
               <Link href="/profile/edit">
                 <Button className="paragraph-medium btn-secondary text-dark300_light900 min-h-[46px] min-w-[175px] px-4 py-3">
-                  Edit Profile
+                  Izmeni Profil
                 </Button>
               </Link>
             )}
