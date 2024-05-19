@@ -19,6 +19,7 @@ import { useState } from "react";
 import { ProfileSchema } from "@/lib/validations";
 import { usePathname, useRouter } from "next/navigation";
 import { updateUser } from "@/lib/actions/user.action";
+import { toast } from "../ui/use-toast";
 
 interface Props {
   clerkId: string;
@@ -56,6 +57,11 @@ export default function Profile({ clerkId, user }: Props) {
           bio: values.bio,
         },
         path: pathname,
+      });
+
+      toast({
+        title: `Profil uspesno izmenjen}`,
+        variant: "default",
       });
 
       router.back();

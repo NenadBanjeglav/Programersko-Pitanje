@@ -22,6 +22,7 @@ import { createQuestion, editQuestion } from "@/lib/actions/question.action";
 import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeProvider";
 import { useForm } from "react-hook-form";
+import { toast } from "../ui/use-toast";
 
 interface Props {
   type?: string;
@@ -68,6 +69,11 @@ export default function Question({
           path: pathname,
         });
 
+        toast({
+          title: `Pitanje uspesno izmenjeno}`,
+          variant: "default",
+        });
+
         router.push(`/question/${parsedQuestionDetails._id}`);
       } else {
         await createQuestion({
@@ -76,6 +82,10 @@ export default function Question({
           tags: values.tags,
           author: JSON.parse(mongoUserId),
           path: pathname,
+        });
+        toast({
+          title: `Pitanje uspesno postavljeno}`,
+          variant: "default",
         });
         router.push("/");
       }
