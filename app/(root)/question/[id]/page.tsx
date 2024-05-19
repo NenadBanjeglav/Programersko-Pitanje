@@ -15,6 +15,7 @@ import type { Metadata } from "next";
 import { auth } from "@clerk/nextjs/server";
 import Votes from "@/components/shared/Votes";
 import Answer from "@/components/forms/Answer";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Pitanje | Programersko Pitanje",
@@ -54,11 +55,11 @@ export default async function page({ params, searchParams }: any) {
             <Votes
               type="Question"
               itemId={JSON.stringify(result._id)}
-              userId={JSON.stringify(mongoUser._id)}
+              userId={JSON.stringify(mongoUser?._id)}
               upvotes={result.upvotes.length}
               downvotes={result.downvotes.length}
-              hasupVoted={result.upvotes.includes(mongoUser._id)}
-              hasdownVoted={result.downvotes.includes(mongoUser._id)}
+              hasupVoted={result.upvotes.includes(mongoUser?._id)}
+              hasdownVoted={result.downvotes.includes(mongoUser?._id)}
               hasSaved={mongoUser?.saved.includes(result._id)}
             />
           </div>
@@ -108,18 +109,27 @@ export default async function page({ params, searchParams }: any) {
       </div>
 
       <AllAnswers
-        questionId={result._id}
-        userId={mongoUser._id}
+        questionId={result?._id}
+        userId={mongoUser?._id}
         totalAnswers={result.answers.length}
         page={searchParams?.page}
         filter={searchParams?.filter}
       />
 
-      <Answer
-        question={result.content}
-        questionId={JSON.stringify(result._id)}
-        authorId={JSON.stringify(mongoUser._id)}
-      />
+      <SignedIn>
+        <Answer
+          question={result.content}
+          questionId={JSON.stringify(result._id)}
+          authorId={JSON.stringify(mongoUser?._id)}
+        />
+      </SignedIn>
+      <SignedOut>
+        <div className="flex flex-col items-center justify-center">
+          <p className="body-regular text-dark500_light700 my-3.5 max-w-md text-center">
+            Da biste odgovorili na pitanje morate biti prijavljeni!
+          </p>
+        </div>
+      </SignedOut>
     </>
   );
 }
