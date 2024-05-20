@@ -69,15 +69,13 @@ export default function GlobalResult() {
       <div className="my-5 h-px bg-light-700/50 dark:bg-dark-500/50" />
       <div className="space-y-5">
         <p className="text-dark400_light900 paragraph-semibold px-5">
-          Top Match
+          Najbolje poklapanje
         </p>
 
         {isLoading ? (
           <div className="flex-center flex-col px-5">
-            <ReloadIcon className=" my-2 animate-spin text-primary-500" />
-            <p className="text-dark200_light800">
-              Browsing the entire database
-            </p>
+            <ReloadIcon className=" my-2 size-10 animate-spin text-primary-500" />
+            <p className="text-dark200_light800">Pretrazivanje cele baze...</p>
           </div>
         ) : (
           <div className="flex flex-col gap-2">
