@@ -8,7 +8,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { sidebarLinks } from "@/constants";
-import { SignedOut, useAuth } from "@clerk/nextjs";
+import { SignedOut } from "@clerk/nextjs";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -17,19 +17,19 @@ import React from "react";
 
 const NavContent = () => {
   const pathname = usePathname();
-  const { userId } = useAuth();
+  // const { userId } = useAuth();
 
-  let updatedSideBarlinks = sidebarLinks;
+  // let updatedSideBarlinks = sidebarLinks;
 
-  if (!userId) {
-    updatedSideBarlinks = sidebarLinks.filter(
-      (el) => el.route !== "/profile" && el.route !== "/collection"
-    );
-  }
+  // if (!userId) {
+  //   updatedSideBarlinks = sidebarLinks.filter(
+  //     (el) => el.route !== "/profile" && el.route !== "/collection"
+  //   );
+  // }
 
   return (
     <section className="flex h-full flex-col gap-6 pt-16">
-      {updatedSideBarlinks.map((el) => {
+      {sidebarLinks.map((el) => {
         const isActive =
           (pathname.includes(el.route) && el.route.length > 1) ||
           pathname === el.route;

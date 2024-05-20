@@ -5,7 +5,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getUserInfo } from "@/lib/actions/user.action";
 import { getMonthAndYear } from "@/lib/utils";
 import { URLProps } from "@/types";
-
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
